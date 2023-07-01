@@ -1,0 +1,5 @@
+id="contentDiv"
+class = hidden
+    .hidden {
+      display: none;
+    }

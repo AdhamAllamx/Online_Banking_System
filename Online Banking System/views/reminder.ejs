@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reminder Example</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      header {
+        background: #f0f0f0;
+        width: 100%;
+        position: fixed;
+        z-index: 999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 200px;
+      }
+      .logo {
+        text-decoration: none;
+        color: #3a6cf4;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.8em;
+      }
+
+      .navigation a {
+        text-decoration: none;
+        color: #3a6cf4;
+        font-size: 1.8em;
+        font-weight: 500;
+        padding-left: 30px;
+        transition: 1.5s ease;
+      }
+      .navigation a:hover {
+        font-size: 2.2em;
+      }
+      .navigation a:hover {
+        color: #601cfc;
+      }
+      section {
+        padding: 100px 200px;
+      }
+      .main {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        /* alighn items can't be done before display flex */
+        align-items: center;
+        background: url("white.jpeg") no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        justify-content: center;
+      }
+      .main h2 {
+        color: white;
+        font-size: 1.4em;
+        font-weight: 500;
+      }
+      .main h2 span {
+        display: inline-block;
+        margin-top: 10px;
+        color: #5c82eb;
+        font-size: 3em;
+        font-weight: 600;
+      }
+      .main h3 {
+        color: white;
+        font-size: 2em;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      .main-btn {
+        text-decoration: none;
+        color: #fff;
+        background: #3a6cf4;
+        font-size: 1.1em;
+        font-weight: 600;
+        display: inline-block;
+        padding: 0.9375em 2.1875em;
+        letter-spacing: 1px;
+        border-radius: 15px;
+        margin-bottom: 40px;
+        transition: 0.7s ease;
+      }
+      .main-btn:hover {
+        background-color: #0a49f6;
+        transform: scale(1.1);
+      }
+      .social-icons a {
+        color: white;
+        font-size: 1.7em;
+        padding-right: 30px;
+        transition: 0.7s ease;
+      }
+      .social-icons a:hover {
+        font-size: 2.2em;
+      }
+      .title {
+        display: flex;
+        justify-content: center;
+        color: #3a6cf4;
+        font-size: 2.2em;
+        font-weight: 800;
+        margin-bottom: 30px;
+      }
+      .content {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .main h1 {
+        color: #3a6cf4;
+        margin-right: 10px;
+      }
+
+      .card {
+        background-color: #fff;
+        width: 21.25em;
+        box-shadow: 0 5px 25px rgba(1, 1, 1, 0.15);
+        border-radius: 10px;
+        padding: 25px;
+        margin: 15px;
+        transition: 0.7s ease;
+      }
+      .card:hover {
+        transform: scale(1.1);
+      }
+      .icon {
+        color: #3a6cf4;
+        font-size: 8em;
+        text-align: center;
+      }
+      .info {
+        text-align: center;
+      }
+      .info h3 {
+        color: #3a6cf4;
+        font-size: 1.2em;
+        font-weight: 700;
+        margin: 10px;
+      }
+      .projects {
+        background-color: #000016;
+      }
+      .projects .content {
+        margin-top: 30px;
+      }
+      .project-card {
+        background: white;
+        border: 1px solid white;
+        min-height: 6em;
+        width: 23em;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 20px;
+        transition: 0.7s ease;
+      }
+      .project-card:hover {
+        transform: scale(1.1);
+      }
+      .project-img img {
+        width: 100%;
+      }
+      .userpass {
+        display: flex;
+        flex-direction: row;
+      }
+      .project-card:hover .project-img {
+        opacity: 0.9;
+      }
+      .project-info {
+        padding: 1em;
+      }
+      .project-category {
+        font-size: 0.8em;
+        color: black;
+      }
+      .project-title {
+        display: flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+        font-weight: 800;
+        margin-top: 10px;
+      }
+      .more-details {
+        text-decoration: none;
+        color: #3a6cf4;
+      }
+      .more-details:hover {
+        color: #601cfc;
+      }
+      .contact .icon {
+        font-size: 4.5em;
+      }
+      .contact .info h3 {
+        color: black;
+      }
+      .contact .info p {
+        font-size: 1.2em;
+      }
+      .footer {
+        background-color: #000016;
+        color: white;
+        padding: 2em;
+        display: flex;
+        justify-content: space-between;
+      }
+      .footer-title {
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+      .footer-title span {
+        color: #3a6cf4;
+      }
+      .footer .social-icons a {
+        padding: 0 12px 0 0;
+      }
+      input {
+        width: 200px;
+        padding: 10px;
+        border-color: #3a6cf4;
+
+        border-radius: 10px;
+      }
+      @media (max-width: 1023px) {
+        header {
+          padding: 10px 10px;
+        }
+        .navigation a {
+          padding-left: 5px;
+          font-size: 1.4em;
+          font-weight: 400;
+        }
+        .title {
+          font-size: 1.8em;
+        }
+        section {
+          padding: 80px 20px;
+        }
+        .main-content h2 {
+          font-size: 1em;
+        }
+        .main-content h3 {
+          font-size: 1.6em;
+        }
+        .content {
+          flex-direction: column;
+          align-items: center;
+        }
+        @media (max-width: 641px) {
+          body {
+            font-size: 12px;
+          }
+          .main-content h2 {
+            font-size: 0.8em;
+          }
+          .main-content h3 {
+            font-size: 1.4em;
+          }
+        }
+        @media (max-width: 300px) {
+          body {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .reminder-form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .reminder-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .reminder-button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .reminder-button:hover {
+        background-color: #45a049;
+      }
+
+      .reminder-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .reminder-item {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a id="home" href="/home" class="logo">DeepEnd </a>
+      <nav class="navigation">
+        <a href="/login">
+          <i
+            style="width: 50px; height: 50px; color: #000016"
+            class="fa-regular fa-bell"
+          ></i>
+          <i
+            style="width: 50px; height: 50px; color: #000016"
+            class="fa-solid fa-right-from-bracket"
+          ></i>
+        </a>
+      </nav>
+    </header>
+    <section class="main" style="display: flex; flex-direction: column;">
+      <h2>Create a Reminder</h2>
+
+  <div class="reminder-form">
+    <label for="reminder-input">Reminder:</label>
+    <input type="text" id="reminder-input" class="reminder-input" required>
+  </div>
+
+  <div class="reminder-form">
+    <label for="month-input">Month:</label>
+    <input type="text" id="month-input" class="reminder-input" required>
+
+    <label for="day-input">Day:</label>
+    <input type="text" id="day-input" class="reminder-input" required>
+
+    <label for="year-input">Year:</label>
+    <input type="text" id="year-input" class="reminder-input" required>
+  </div>
+
+  <div class="reminder-form">
+    <label for="hour-input">Hour:</label>
+    <input type="text" id="hour-input" class="reminder-input" required>
+
+    <label for="minute-input">Minute:</label>
+    <input type="text" id="minute-input" class="reminder-input" required>
+  </div>
+
+  <button id="submit" style="background-color: #3a6cf4; height: 50px; color: #fff; border-radius: 10px;" type="button" id="create-reminder-button" onclick="createReminder()">Create Reminder</button>
+
+  <h3>Reminders:</h3>
+  <ul id="reminder-list"></ul>
+
+
+    </section>
+
+    <script>
+         function createReminder() {
+      var reminderName = document.getElementById("reminder-input").value;
+      var month = document.getElementById("month-input").value;
+      var day = document.getElementById("day-input").value;
+      var year = document.getElementById("year-input").value;
+      var hour = document.getElementById("hour-input").value;
+      var minute = document.getElementById("minute-input").value;
+
+      var reminderDateTime = month + " " + day + ", " + year + " at " + hour + ":" + minute;
+
+      var reminderItem = document.createElement("li");
+      reminderItem.innerText = reminderName + " - " + reminderDateTime;
+
+      var reminderList = document.getElementById("reminder-list");
+      reminderList.appendChild(reminderItem);
+
+      // Clear input fields after creating the reminder
+      document.getElementById("reminder-input").value = "";
+      document.getElementById("month-input").value = "";
+      document.getElementById("day-input").value = "";
+      document.getElementById("year-input").value = "";
+      document.getElementById("hour-input").value = "";
+      document.getElementById("minute-input").value = "";
+    }
+      
+
+      window.SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.interimResults = true;
+
+      recognition.addEventListener("result", (e) => {
+        const text = Array.from(e.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join("");
+
+        if (e.results[0].isFinal) {
+       
+          if (text.includes("reminder")) {
+             const remainingText = text.replace("reminder", "").trim();
+            const passwordInput = document.getElementById("reminder-input");
+            passwordInput.value = remainingText.replace(/\s/g, "");
+           
+          }
+          if (text.includes("year")) {
+            const remainingText = text.replace("year", "").trim();
+            const passwordInput = document.getElementById("year-input");
+            passwordInput.value = remainingText.replace(/\s/g, "");
+          }
+          if (text.includes("month")) {
+            const remainingText = text.replace("month", "").trim();
+            const passwordInput = document.getElementById("month-input");
+            passwordInput.value = remainingText.replace(/\s/g, "");
+           
+          }
+          if (text.includes("day")) {
+           const remainingText = text.replace("day", "").trim();
+            const passwordInput = document.getElementById("day-input");
+            passwordInput.value = remainingText.replace(/\s/g, "");
+          }
+          if (text.includes("hour")) {
+            const remainingText = text.replace("hour", "").trim();
+            const passwordInput = document.getElementById("hour-input");
+            passwordInput.value = remainingText.replace(/\s/g, "");
+          }
+          if (text.includes("minute")) {
+          const remainingText = text.replace("minute", "").trim();
+            const passwordInput = document.getElementById("minute-input");
+            passwordInput.value = remainingText.replace(/\s/g, "");
+          }
+
+          if (text.includes("submit")) {
+              var button = document.getElementById("submit");
+
+            // Trigger the click event
+            button.click();
+          }
+          if (text.includes("home")) {
+        var button = document.getElementById("home");
+
+            // Trigger the click event
+            button.click();
+          }
+
+          if (
+            hour !== "0" &&
+            minute !== "0" &&
+            month !== "0" &&
+            day !== "0" &&
+            year !== "0"
+          ) {
+            var date = year + "-" + month + "-" + day;
+            var time = hour + ":" + minute;
+
+            var dateInput = document.getElementById("date-input");
+            var timeInput = document.getElementById("time-input");
+            dateInput.value = date;
+            timeInput.value = time;
+          }
+        }
+      });
+
+      recognition.addEventListener("end", () => {
+        recognition.start();
+      });
+
+      function speak() {
+        var speechSynthesis = window.speechSynthesis;
+        var message = new SpeechSynthesisUtterance();
+        message.text =
+          "please mention the reminder name and the date and time   ";
+        var voices = speechSynthesis.getVoices();
+
+        // Adjust the speed (rate) of speech
+        message.rate = 0.6; // Adjust the value (0.1 to 10) for slower or faster speech
+
+        // Speak the message
+        speechSynthesis.speak(message);
+      }
+
+      recognition.start();
+
+      speak();
+    </script>
+
+    <footer class="footer">
+      <p class="footer-title">copyrights &copy; <span> DEEP END </span></p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,694 @@
+<!-- login.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/6fdaf88a4a.js" crossorigin="anonymous"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      header {
+        background: #f0f0f0;
+        width: 100%;
+        position: fixed;
+        z-index: 999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 200px;
+      }
+      .logo {
+        text-decoration: none;
+        color: #3a6cf4;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.8em;
+      }
+
+      .navigation a {
+        text-decoration: none;
+        color: #3a6cf4;
+        font-size: 1.8em;
+        font-weight: 500;
+        padding-left: 30px;
+        transition: 1.5s ease;
+      }
+      .navigation a:hover {
+        font-size: 2.2em;
+      }
+      .navigation a:hover {
+        color: #601cfc;
+      }
+      section {
+        padding: 100px 200px;
+      }
+      .main {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        /* alighn items can't be done before display flex */
+        align-items: center;
+        background: url("white.jpeg") no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        justify-content: center;
+      }
+      .main h2 {
+        color: white;
+        font-size: 1.4em;
+        font-weight: 500;
+      }
+      .main h2 span {
+        display: inline-block;
+        margin-top: 10px;
+        color: #5c82eb;
+        font-size: 3em;
+        font-weight: 600;
+      }
+      .main h3 {
+        color: white;
+        font-size: 2em;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      .main-btn {
+        text-decoration: none;
+        color: #fff;
+        background: #3a6cf4;
+        font-size: 1.1em;
+        font-weight: 600;
+        display: inline-block;
+        padding: 0.9375em 2.1875em;
+        letter-spacing: 1px;
+        border-radius: 15px;
+        margin-bottom: 40px;
+        transition: 0.7s ease;
+      }
+      .main-btn:hover {
+        background-color: #0a49f6;
+        transform: scale(1.1);
+      }
+      .social-icons a {
+        color: white;
+        font-size: 1.7em;
+        padding-right: 30px;
+        transition: 0.7s ease;
+      }
+      .social-icons a:hover {
+        font-size: 2.2em;
+      }
+      .title {
+        display: flex;
+        justify-content: center;
+        color: #3a6cf4;
+        font-size: 2.2em;
+        font-weight: 800;
+        margin-bottom: 30px;
+      }
+      .content {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .main h1 {
+        color: #3a6cf4;
+        margin-right: 10px;
+      }
+
+      .card {
+        background-color: #fff;
+        width: 21.25em;
+        box-shadow: 0 5px 25px rgba(1, 1, 1, 0.15);
+        border-radius: 10px;
+        padding: 25px;
+        margin: 15px;
+        transition: 0.7s ease;
+      }
+      .card:hover {
+        transform: scale(1.1);
+      }
+      .icon {
+        color: #3a6cf4;
+        font-size: 8em;
+        text-align: center;
+      }
+      .info {
+        text-align: center;
+      }
+      .info h3 {
+        color: #3a6cf4;
+        font-size: 1.2em;
+        font-weight: 700;
+        margin: 10px;
+      }
+      .projects {
+        background-color: #000016;
+      }
+      .projects .content {
+        margin-top: 30px;
+      }
+      .project-card {
+        background: white;
+        border: 1px solid white;
+        min-height: 14em;
+        width: 23em;
+        overflow: hidden;
+        border-radius: 10px;
+        margin: 20px;
+        transition: 0.7s ease;
+      }
+      .project-card:hover {
+        transform: scale(1.1);
+      }
+      .project-img img {
+        width: 100%;
+      }
+      .userpass {
+        display: flex;
+        flex-direction: row;
+      }
+      .project-card:hover .project-img {
+        opacity: 0.9;
+      }
+      .project-info {
+        padding: 1em;
+      }
+      .project-category {
+        font-size: 0.8em;
+        color: black;
+      }
+      .project-title {
+        display: flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+        font-weight: 800;
+        margin-top: 10px;
+      }
+      .more-details {
+        text-decoration: none;
+        color: #3a6cf4;
+      }
+      .more-details:hover {
+        color: #601cfc;
+      }
+      .contact .icon {
+        font-size: 4.5em;
+      }
+      .contact .info h3 {
+        color: black;
+      }
+      .contact .info p {
+        font-size: 1.2em;
+      }
+      .footer {
+        background-color: #000016;
+        color: white;
+        padding: 2em;
+        display: flex;
+        justify-content: space-between;
+      }
+      .footer-title {
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+      .footer-title span {
+        color: #3a6cf4;
+      }
+      .footer .social-icons a {
+        padding: 0 12px 0 0;
+      }
+      input {
+        width: 200px;
+        padding: 10px;
+        border-color: #3a6cf4;
+
+        border-radius: 10px;
+      }
+      @media (max-width: 1023px) {
+        header {
+          padding: 10px 10px;
+        }
+        .navigation a {
+          padding-left: 5px;
+          font-size: 1.4em;
+          font-weight: 400;
+        }
+        .title {
+          font-size: 1.8em;
+        }
+        section {
+          padding: 80px 20px;
+        }
+        .main-content h2 {
+          font-size: 1em;
+        }
+        .main-content h3 {
+          font-size: 1.6em;
+        }
+        .content {
+          flex-direction: column;
+          align-items: center;
+        }
+        @media (max-width: 641px) {
+          body {
+            font-size: 12px;
+          }
+          .main-content h2 {
+            font-size: 0.8em;
+          }
+          .main-content h3 {
+            font-size: 1.4em;
+          }
+        }
+        @media (max-width: 300px) {
+          body {
+            font-size: 10px;
+          }
+        }
+      }
+      @import url('https://fonts.googleapis.com/css2?family=josefin+Sans:wght@400;500;600;700&display=swap');
+
+
+
+
+.card {
+    width: 500px;
+    height: 300px;
+    color: #fff;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.frontVisa1, .backVisa1 {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, #0045c7, #ff2c7d);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+.frontVisa2, .backVisa2 {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, #05787e, #ecc422);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+.frontVisa3, .backVisa3 {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, rgb(2, 12, 31), rgb(179, 15, 9));
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.map-img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.card-no {
+    font-size: 35px;
+    margin-top: 60px;
+}
+
+.card-holder {
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+.name {
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.bar {
+    background: #222;
+    margin-left: -30px;
+    margin-right: -30px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+.card-cvv {
+    margin-top: 20px;
+}
+
+.card-cvv div {
+    flex: 1;
+}
+
+.card-cvv img {
+    width: 100%;
+    display: block;
+    line-height: 0;
+}
+
+.card-cvv p {
+    background: #fff;
+    color: #000;
+    font-size: 22px;
+    padding: 10px 20px;
+}
+
+.card-text {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.signature {
+    margin-top: 30px;
+}
+
+.backVisa1 {
+    transform: rotateY(180deg);
+}
+.backVisa2 {
+    transform: rotateY(180deg);
+}
+.backVisa3 {
+    transform: rotateY(180deg);
+}
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+     input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+    
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+
+.card:hover .card-inner {
+    transform: rotateY(-180deg);
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <a id="home" href="/home" class="logo">DeepEnd </a>
+      <nav class="navigation">
+        <a href="#services">Choose Your Credit Card</a>
+          <a href="/login">
+<i style="width: 50px; height: 50px; color: #000016;" class="fa-solid fa-right-from-bracket "></i>
+        </a>
+      </nav>
+    </header>
+    <section class="main">  
+        <div style="display: flex; flex-direction: column;">
+          <div class="card">
+            <div class="card-inner">
+                <div class="frontVisa1">
+                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                    <div class="row">
+                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" width="60px">
+                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="60px">
+                    </div>
+                    <div class="row card-no">
+                        <p>5244</p>
+                        <p>2150</p>
+                        <p>8252</p>
+                        <p>6420</p>
+                    </div>
+                    <div class="row card-holder">
+                        <p>CARD HPLDER</p>
+                        <p>VALID TILL</p>
+                    </div>
+                    <div class="row name">
+                        <p>JOE ALISON</p>
+                        <p>10 / 25</p>
+                    </div>
+                </div>
+                <div class="backVisa1">
+                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                    <div class="bar"></div>
+                    <div class="row card-cvv">
+                        <div>
+                            <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                        </div>
+                        <p>824</p>
+                    </div>
+                    <div class="row card-text">
+                     
+                    </div>
+                    <div class="row signature">
+                        <p>CUSTOMER SIGNATURE</p>
+                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+
+        <div class="container">
+    <h1>Credit Card Application</h1>
+    <form method="POST" action="/appcred">
+      <label for="name">Full Name:</label>
+      <input type="text" id="fullname" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" required>
+      
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone" required>
+      
+      <label for="income">Annual Income:</label>
+      <input type="text" id="income" name="income" required>
+      
+      <label for="credit-score">Credit Score:</label>
+      <select id="credit-score" name="credit-score" required>
+        <option value="" disabled selected>Select your credit score</option>
+        <option value="excellent">Excellent</option>
+        <option value="good">Good</option>
+        <option value="fair">Fair</option>
+        <option value="poor">Poor</option>
+      </select>
+      
+      <input id="submit" style="background-color: #0045c7;" type="submit" value="Submit Application">
+    </form>
+  </div>
+
+
+
+        
+    </section>
+      <footer class="footer">
+      <p class="footer-title">copyrights &copy; <span> DEEP END </span></p>
+    
+    </footer>
+
+     <script>
+      window.SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.interimResults = true;
+
+      recognition.addEventListener("result", (e) => {
+        const text = Array.from(e.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join("");
+
+        if (e.results[0].isFinal) {
+          if (text.includes("home")) {
+            var button = document.getElementById("home");
+
+            // Trigger the click event
+            button.click();
+          }
+          if (text.includes("submit")) {
+            var button = document.getElementById("submit");
+
+            // Trigger the click event
+            button.click();
+          }
+          if (text.includes("full name")) {
+            const usernameInput = document.getElementById("fullname");
+            const remainingText = text.replace("full name", "").trim();
+            usernameInput.value = remainingText.replace(/\s/g, "");
+          }
+          if (text.includes("email")) {
+            const passwordInput = document.getElementById("email");
+            const remainingText = text.replace("email", "").trim();
+            passwordInput.value = remainingText.replace(/\s/g, "");
+          } 
+            if (text.includes("address")) {
+              const passwordInput = document.getElementById("address");
+              const remainingText = text.replace("address", "").trim();
+              passwordInput.value = remainingText.replace(/\s/g, "");
+            }
+              if (text.includes("phone")) {
+              const passwordInput = document.getElementById("phone");
+              const remainingText = text.replace("phone", "").trim();
+              passwordInput.value = remainingText.replace(/\s/g, "");
+            }
+              if (text.includes("income")) {
+              const passwordInput = document.getElementById("income");
+              const remainingText = text.replace("income", "").trim();
+              passwordInput.value = remainingText.replace(/\s/g, "");
+            }
+              if (text.includes("excellent")) {
+                      const passwordInput = document.getElementById("credit-score");
+                const optionToSelect = document.querySelector('option[value="excellent"]');
+
+      // Set the selected property to true
+      optionToSelect.selected = true;
+ selectElement.dispatchEvent(new Event("change"));
+              
+
+
+
+            }
+            if (text.includes("good")) {
+              const passwordInput = document.getElementById("credit-score");
+                const optionToSelect = document.querySelector('option[value="good"]');
+
+      // Set the selected property to true
+      optionToSelect.selected = true;
+ selectElement.dispatchEvent(new Event("change"));
+
+
+            }
+            if (text.includes("fair")) {
+            
+              
+           const passwordInput = document.getElementById("credit-score");
+                const optionToSelect = document.querySelector('option[value="fair"]');
+
+      // Set the selected property to true
+      optionToSelect.selected = true;
+ selectElement.dispatchEvent(new Event("change"));
+
+
+            }
+            if (text.includes("poor")) {
+                         const passwordInput = document.getElementById("credit-score");
+                const optionToSelect = document.querySelector('option[value="poor"]');
+
+      // Set the selected property to true
+      optionToSelect.selected = true;
+ selectElement.dispatchEvent(new Event("change"));
+
+
+
+            }
+
+          
+        }
+      });
+
+      recognition.addEventListener("end", () => {
+        recognition.start();
+      });
+
+      function speak() {
+        var speechSynthesis = window.speechSynthesis;
+        var message = new SpeechSynthesisUtterance();
+        message.text =
+          "please mention your full name and email nad address and phone number , annual income and credit score ";
+        var voices = speechSynthesis.getVoices();
+      
+
+        // Adjust the speed (rate) of speech
+        message.rate = .6; // Adjust the value (0.1 to 10) for slower or faster speech
+
+        // Speak the message
+        speechSynthesis.speak(message);
+      }
+      
+      recognition.start();
+      speak();
+    </script>
+  </body>
+</html>
+
+
+
