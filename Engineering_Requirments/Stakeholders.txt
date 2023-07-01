@@ -1,0 +1,5 @@
+stakeholders
+1-guest 
+2-Signed in client
+3-Bank Manager
+4-System Admin
